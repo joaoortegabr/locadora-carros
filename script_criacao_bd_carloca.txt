@@ -1,0 +1,13 @@
+Hibernate: create table tb_carro (id bigint not null auto_increment, cor smallint not null, is_alugado bit, km_atual float(53), modelo varchar(255) not null, categoria_id bigint not null, loja_atual bigint not null, montadora_id bigint not null, primary key (id)) engine=InnoDB
+Hibernate: create table tb_categoria (id bigint not null auto_increment, nome varchar(255) not null, primary key (id)) engine=InnoDB
+Hibernate: create table tb_cliente (id bigint not null auto_increment, email varchar(255) not null, nome varchar(255) not null, telefone varchar(255) not null, primary key (id)) engine=InnoDB
+Hibernate: create table tb_locacao (id bigint not null auto_increment, data date not null, km_rodados float(53) not null, carro_id bigint not null, cliente_id bigint not null, entrega_loja_id bigint not null, retirada_loja_id bigint not null, primary key (id)) engine=InnoDB
+Hibernate: create table tb_loja (id bigint not null auto_increment, nome varchar(255) not null, primary key (id)) engine=InnoDB
+Hibernate: create table tb_montadora (id bigint not null auto_increment, nome varchar(255) not null, primary key (id)) engine=InnoDB
+Hibernate: alter table tb_carro add constraint FK3c17nhvc3l3uulst03hj0tpxw foreign key (categoria_id) references tb_categoria (id)
+Hibernate: alter table tb_carro add constraint FKmxch1dmmykq2c7kidkxa0qdwm foreign key (loja_atual) references tb_loja (id)
+Hibernate: alter table tb_carro add constraint FKj7fvkbs9hblvkiugmia8rjk5u foreign key (montadora_id) references tb_montadora (id)
+Hibernate: alter table tb_locacao add constraint FKbo3staupvfa8w94md4u6lvlku foreign key (carro_id) references tb_carro (id)
+Hibernate: alter table tb_locacao add constraint FKabvpppfwt7ydlj8btkhf6kspv foreign key (cliente_id) references tb_cliente (id)
+Hibernate: alter table tb_locacao add constraint FKqnpy1x8j02711g3163a8pg4i5 foreign key (entrega_loja_id) references tb_loja (id)
+Hibernate: alter table tb_locacao add constraint FKixp9dxlrd2qraainrui4lxg2g foreign key (retirada_loja_id) references tb_loja (id)
